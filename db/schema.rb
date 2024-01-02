@@ -10,5 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_02_070700) do
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.integer "attendance_flag", default: 0
+    t.integer "hourly_wage", default: 0
+    t.integer "admin_flag", default: 0
+    t.index ["email"], name: "index_employees_on_email", unique: true
+  end
+
 end
