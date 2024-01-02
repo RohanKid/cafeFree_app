@@ -10,7 +10,9 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)    # 実装は終わっていないことに注意!
     if @employee.save
-      flash[:success] = "おかえりなさい"
+      reset_session
+      log_in @employee
+      flash[:success] = "こんにちは！"
       redirect_to @employee
     else
       render 'new', status: :unprocessable_entity
