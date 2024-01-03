@@ -1,0 +1,24 @@
+<tr>
+  <td><%= employee.id%></td>
+<% if current_employee == employee || current_employee.admin_flag == 1 %>
+  <td><%= link_to employee.name, employee %></td>
+<% else %>
+  <td><%= employee.name %></td>
+<% end %>
+<% if employee.attendance_flag == 1 %>
+  <td><span class="badge text-bg-primary">出勤中</span></td>
+<% else %>
+  <td></td>
+<% end %>
+<% if employee.admin_flag == 1%>
+  <td><span class="badge text-bg-danger">管理者</span></td>
+<% else %>
+  <td></td>
+<% end %>
+<% if current_employee.admin_flag == 1%>
+  <td><span class="employee-edit badge"><%= link_to "従業員情報編集", edit_employee_path(employee) %></span></td>
+<% else %>
+  <td></td>
+<% end %>
+
+</tr>

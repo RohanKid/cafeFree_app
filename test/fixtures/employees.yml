@@ -2,3 +2,26 @@ michael:
   name: Michael Example
   email: michael@example.com
   password_digest: <%= Employee.digest('password') %>
+  admin_flag: 1
+
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= Employee.digest('password') %>
+
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+  password_digest: <%= Employee.digest('password') %>
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+  password_digest: <%= Employee.digest('password') %>
+
+<% 30.times do |n| %>
+employee_<%= n %>:
+  name:  <%= "Employee #{n}" %>
+  email: <%= "employee-#{n}@example.com" %>
+  password_digest: <%= Employee.digest('password') %>
+<% end %>

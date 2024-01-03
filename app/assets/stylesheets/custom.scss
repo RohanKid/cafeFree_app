@@ -155,3 +155,33 @@ input {
     color: $state-danger-text;
   }
 }
+
+.text-bg-danger {
+  background-color: orangered;
+}
+.text-bg-primary {
+  background-color: aqua;
+}
+.employee-edit {
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    color: black;
+  }
+}
+
+.employee-delete {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    color: black;
+  }
+}

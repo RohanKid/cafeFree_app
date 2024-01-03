@@ -1,0 +1,19 @@
+<% provide(:title, 'All employees') %>
+<h1>従業員一覧</h1>
+<%= will_paginate %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">従業員ID</th>
+      <th scope="col">名前</th>
+      <th scope="col">出勤状態</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <%= render employee %>
+    <% end %>
+  </tbody>
+</table>

@@ -16,4 +16,10 @@ class ActiveSupport::TestCase
   def is_logged_in?
     !session[:employee_id].nil?
   end
+
+   # テストemployeeとしてログインする
+  def log_in_as(employee, password: 'password')
+    post login_path, params: { session: { email: employee.email,
+                                          password: password} }
+  end
 end

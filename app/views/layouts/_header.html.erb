@@ -6,7 +6,7 @@
         <li><%= link_to "ホーム",   root_path %></li>
         <% if logged_in? %>
           <li>
-            <%= link_to "Log out", logout_path,
+            <%= link_to "ログアウト", logout_path,
                                     data: { "turbo-method": :delete } %>
           </li>
         <% else %>
