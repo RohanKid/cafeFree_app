@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
   before_action :admin_employee, only: [:edit, :update, :destroy]
 
   def index
-    @employees = Employee.paginate(page: params[:page])
+    @employees = Employee.order("id asc").paginate(page: params[:page])
   end
 
   def show
