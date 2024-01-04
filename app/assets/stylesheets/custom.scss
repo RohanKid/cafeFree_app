@@ -162,6 +162,11 @@ input {
 .text-bg-primary {
   background-color: aqua;
 }
+
+.text-bg-greeen {
+  background-color: greenyellow;
+}
+
 .employee-edit {
   a {
     text-decoration: none;
@@ -183,5 +188,50 @@ input {
   }
   a:hover {
     color: black;
+  }
+}
+
+.attendance-delete {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    color: black;
+  }
+}
+
+.attendance-new {
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    color: black;
+  }
+}
+
+/* microposts */
+
+.attendances {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .attendance {
+    display: block;
+  }
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
   }
 }

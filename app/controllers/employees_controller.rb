@@ -1,13 +1,26 @@
 class EmployeesController < ApplicationController
   before_action :logged_in_employee, only: [:index, :show, :edit, :update, :destroy]
   before_action :admin_employee, only: [:edit, :update, :destroy]
+  before_action :admin_or_current, only: [:show]
 
   def index
     @employees = Employee.order("id asc").paginate(page: params[:page])
   end
 
   def show
+    @year = params["date(1i)"] || Date.today.year
+    @month = params["date(2i)"] || Date.today.month
+    @year = @year.to_i
+    @month = @month.to_i
     @employee = Employee.find(params[:id])
+    @attendances = @employee.attendances.where(start_work_date: Date.new(@year,@month,1)..Date.new(@year,@month,1).next_month)
+    @all_work_time = 0
+    @attendances.each do |attendance|
+      if attendance.end_work_date != nil
+        @all_work_time += attendance.end_work_date - attendance.start_work_date
+      end
+    end
+    @all_work_time /= 3600
   end
 
   def new
@@ -55,23 +68,5 @@ class EmployeesController < ApplicationController
 
     def employee_params_edit
       params.require(:employee).permit(:name, :email, :hourly_wage)
-    end
-
-    # beforeフィルタ
-
-    # ログイン済みemployeeかどうか確認
-    def logged_in_employee
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url, status: :see_other
-      end
-    end
-
-    # adminemployeeかどうか確認
-    def admin_employee
-      if current_employee.admin_flag != 1
-        flash[:danger] = "この操作の権限がありません。"
-        redirect_to employees_path, status: :see_other
-      end
     end
 end

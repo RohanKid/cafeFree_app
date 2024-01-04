@@ -1,4 +1,5 @@
 class Employee < ApplicationRecord
+  has_many :attendances, dependent: :destroy
   before_save { self.email = email.downcase }
   validates :hourly_wage, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :name,  presence: true, length: { maximum: 50 }

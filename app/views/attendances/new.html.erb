@@ -1,0 +1,21 @@
+<% provide(:title, "New attendance") %>
+<%= link_to "勤怠一覧へ", current_employee %>
+<h1>勤怠入力</h1>
+<h2 id="clock"></h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @attendance,  url: {controller: 'attendances', action: 'create' }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <% if current_employee.attendance_flag == 0 %>
+        <%= f.hidden_field :start_work_date, :value => Time.now %>
+        <%= f.submit "出勤", class: "btn btn-primary" %>
+      <% else %>
+        <%= f.label :break_time, "休憩時間" %>
+        <%= f.number_field :break_time, step: "0.1", class: 'form-control' %>
+
+        <%= f.hidden_field :end_work_date, :value => Time.now %>
+        <%= f.submit "退勤", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
