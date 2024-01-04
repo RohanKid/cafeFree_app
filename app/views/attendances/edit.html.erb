@@ -1,0 +1,25 @@
+<% provide(:title, "Edit attendance") %>
+<%= link_to "勤怠一覧へ", employee_path(@attendance.employee_id) %>
+<h1>勤怠情報編集</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @attendance) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.hidden_field :attendance_modify_flag, :value => 1 %>
+      <%= f.label :start_work_date, "出勤時間" %>
+      <%= f.datetime_field :start_work_date, class: 'form-control' %>
+
+      <%= f.label :break_time, "休憩時間" %>
+      <%= f.number_field :break_time, step: "0.1", class: 'form-control' %>
+
+      <%= f.label :end_work_date, "退勤時間" %>
+      <%= f.datetime_field :end_work_date, class: 'form-control' %>
+
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    <% end %>
+    <div>
+      <span class="attendance-delete badge text-bg-danger"><%= link_to "勤怠を削除", @attendance, data: { "turbo-method": :delete,
+                                          turbo_confirm: "本当に削除しますか" } %></span>
+    </div>
+  </div>
+</div>

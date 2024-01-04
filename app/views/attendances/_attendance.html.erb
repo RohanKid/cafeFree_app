@@ -1,0 +1,7 @@
+<li id="attendance-<%= attendance.id %>">
+  <span class="attendance"><%= attendance.start_work_date.mday %>日  <%= attendance.start_work_date.strftime('%H:%M') %>~<%= attendance.end_work_date.blank? ? "" : attendance.end_work_date.strftime('%H:%M') %> 休憩時間:<%= attendance.break_time %>時間 <span class="badge"><%= attendance.attendance_modify_flag == 1 ? "修正済み" : "" %></span></span>
+
+  <% if current_employee.admin_flag == 1 %>
+    <%= link_to "勤怠修正", edit_attendance_path(attendance) %>
+  <% end %>
+</li>

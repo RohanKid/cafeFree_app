@@ -63,4 +63,12 @@ class EmployeeTest < ActiveSupport::TestCase
     @employee.password = @employee.password_confirmation = "a" * 5
     assert_not @employee.valid?
   end
+
+  test "associated attendances should be destroyed" do
+    @employee.save
+    @employee.attendances.create!(start_work_date: "2024-01-03 11:37:04", end_work_date: "2024-01-03 16:37:04")
+    assert_difference 'Attendance.count', -1 do
+      @employee.destroy
+    end
+  end
 end

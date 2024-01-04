@@ -6,11 +6,29 @@
       <h1>
         <%= @employee.name %>
       </h1>
-      <h2>時給 : <%= @employee.hourly_wage %></h2>
-      <h2>総労働時間 :</h2>
-      <h2>給料 :</h2>
+      <h2><%= @year %>年</h2>
+      <h2>時給 : <%= @employee.hourly_wage %> 円</h2>
+      <h2><%= @month %>月の総労働時間 : <%= @all_work_time %> 時間</h2>
+      <h2><%= @month %>月の給料 : <%= (@all_work_time * @employee.hourly_wage).to_i %> 円</h2>
     </section>
   </aside>
+  <div class="col-md-5">
+    <% if @employee.attendances.any? %>
+      <h3>勤怠実績</h3>
+        <%= form_with url: employee_path(@employee), method: :get do |f| %>
+          <%= f.date_select(:date, discard_day: true) %>
+          <%= f.submit "検索" %>
+        <% end %>
+      <ul class="attendances">
+        <%= render @attendances %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="col-md-3">
+    <% if current_employee.id == @employee.id %>
+      <td><span class="attendance-new badge text-bg-greeen"><%= link_to "勤怠管理", new_attendance_path %></span></td>
+    <% end %>
+  </div>
 </div>
 
 
